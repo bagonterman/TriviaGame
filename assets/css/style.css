@@ -1,0 +1,45 @@
+
+h1{
+    font-size: 50px;
+    color:rgb(202, 72, 12);
+    text-align: center;
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+p.myQuestion{
+    color:rgb(214, 106, 55);
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Love Ya Like A Sister', cursive;
+    
+}
+.myAnswers{
+    width: 160px;
+    height: 50px;
+
+}
+#timeRemaining{
+    font-family: 'Love Ya Like A Sister', cursive; 
+}
+#start-correctOrWrong{
+/* this is for the start button  */
+    position: absolute;
+    /* margin:auto; */
+    width: 160px;
+    height: 50px;
+    /* margin-top:-420px; */
+    margin-top:-45%;
+    margin-left: 35%;
+}
+
+#bigButton{
+    background-image: url("../images/Center_Button.png");
+    /* background-position: -300px -300px; */
+    background-repeat: no-repeat;
+    /* background-size: 400px 400px; */
+    background-size: 90%;
+    /* display: inline-block; */
+    margin-top: -300px;
+    width: 100%; 
+    height: 750px;
+    content:"";
+}
