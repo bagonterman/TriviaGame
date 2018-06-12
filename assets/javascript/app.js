@@ -12,7 +12,7 @@ $(document).ready(function(){
   // submitButton.on("click",showResults);
   
   count=1;
-  timer=12;
+  timer=10;
 
 const myQuestions = [
     {
@@ -24,7 +24,7 @@ const myQuestions = [
         d: "Stand on your head",
         e: "Yell for help!"
       },
-      correctAnswer: "a"
+      correctAnswer: "Suck venom"
     },
     {
       question: "Survive a bear attack by?",
@@ -35,7 +35,7 @@ const myQuestions = [
         d: "Throwing food",
         e: "Using bear spray"
       },
-      correctAnswer: "e"
+      correctAnswer: "Using bear spray"
     },
     {
         question: "Survive hypothermia by?",
@@ -46,7 +46,7 @@ const myQuestions = [
           d: "Eating a pop tart",
           e: "Growing fur"
         },
-        correctAnswer: "c"
+        correctAnswer: "Wrap yourself in bubble wrap"
       },
       {
         question: "When leaving for an adventure?",
@@ -57,7 +57,7 @@ const myQuestions = [
           d: "Change your oil",
           e: "Pack a lunch"
         },
-        correctAnswer: "a"
+        correctAnswer: "Tell three people"
       },
     {
       question: "How long can you live without food?",
@@ -68,7 +68,7 @@ const myQuestions = [
         d: "Thirty days",
         e: "Twenty five days"
       },
-      correctAnswer: "d"
+      correctAnswer: "Thirty days"
     }
   ];
 ///////////////
@@ -104,9 +104,20 @@ function answer(e){
 
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
-  var rel = e.target.rel;
-  // console.log(e.currentTarget);
-  console.log(e.target.value);
+  console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
+  console.log(e.target.value);//The value of each button.
+  if(myQuestions[count-1].correctAnswer==e.target.value){
+      alert("You survived");
+      //window.clearInterval(intervalID);
+      timer=10;
+      $("#time").text(timer);
+  }
+  else{
+      alert("I am sorry to inform you \n but you didn't make it.");
+      //window.clearInterval(intervalID);
+      timer=10;
+      $("#time").text(timer);
+  }
   // console.log(this.attr('value'));
 });
 // var element = document.querySelector('.myAnswers.0');
@@ -120,28 +131,28 @@ $(document).on("click", "#quiz", function(e){
   //   alert("farts");
   // });
         quizContainer.html(
-          `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="giraffe" class="myAnswers 0" onclick="${answer()}">${myQuestions[count].answers.a}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.e}</button>`);
+          `<p class="myQuestion">${myQuestions[0].question}</p>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.a}" class="myAnswers 0">${myQuestions[0].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.b}" class="myAnswers 0">${myQuestions[0].answers.b}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.c}" class="myAnswers 0"">${myQuestions[0].answers.c}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.d}" class="myAnswers 0"">${myQuestions[0].answers.d}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.e}" class="myAnswers 0"">${myQuestions[0].answers.e}</button>`);
   var intervalID = setInterval(function () {
 
     --timer;
     $("#time").text(timer);
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers ${count}" onclick="answer()">${myQuestions[count].answers.a}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
-          <button type="button" class="myAnswers">${myQuestions[count].answers.e}</button>`);
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
    if (++count === myQuestions.length) {
        window.clearInterval(intervalID);
    }
   
-}, 12000);
+}, 10000);
  });
 
 
