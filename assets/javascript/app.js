@@ -97,9 +97,18 @@ const myQuestions = [
 //   vi.start();
 // }, 60000);
 //////////////
-function answer(){
-console.log(this);
+function answer(e){
+//console.log(this.attr('value'));
+//console.log(e);
 }
+
+$(document).on("click", "#quiz", function(e){
+  e.preventDefault();
+  var rel = e.target.rel;
+  // console.log(e.currentTarget);
+  console.log(e.target.value);
+  // console.log(this.attr('value'));
+});
 // var element = document.querySelector('.myAnswers.0');
 // element.addEventListener("click", function(e) {
 //     alert('something');
@@ -112,7 +121,7 @@ console.log(this);
   // });
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers 0" onclick="${answer()}">${myQuestions[count].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" value="giraffe" class="myAnswers 0" onclick="${answer()}">${myQuestions[count].answers.a}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
