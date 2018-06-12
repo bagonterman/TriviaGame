@@ -7,12 +7,12 @@
 $(document).ready(function(){
  //quizB = $("#quiz").append("<p>this sucks</p>");
   const quizContainer=$("div#quiz");
-  const resultsContainer = $("div#results");
-  const submitButton = $("#submit");
+ // const resultsContainer = $("div#results");
+  //const submitButton = $("#submit");
   // submitButton.on("click",showResults);
   
-  count=1;
-  timer=25;
+  count=0;
+  timer=12;
 
 const myQuestions = [
     {
@@ -97,12 +97,18 @@ const myQuestions = [
 //   vi.start();
 // }, 60000);
 //////////////
+function answer(){
+  
+ // alert(count);
+//  console.log($(".myAnswers.0"))
+console.log("farts");
 
+}
  $("#start-correctOrWrong").on("click", function(){
   $("#time").text(timer);
         quizContainer.html(
-          `<p class="myQuestion">${myQuestions[0].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers">${myQuestions[count].answers.a}</button>
+          `<p class="myQuestion">${myQuestions[count].question}</p>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers 0" onclick="${answer()};">${myQuestions[count].answers.a}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
@@ -113,7 +119,7 @@ const myQuestions = [
     $("#time").text(timer);
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers">${myQuestions[count].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers ${count}" onclick="${answer()};">${myQuestions[count].answers.a}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
@@ -122,7 +128,7 @@ const myQuestions = [
        window.clearInterval(intervalID);
    }
   
-}, 3000);
+}, 12000);
  });
 
 });
