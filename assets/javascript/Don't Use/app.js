@@ -74,6 +74,10 @@ const myQuestions = [
     }
   ];
 
+  // unused
+//little snippet that I tried to use for an on click
+  // <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers 0" onclick="${answer()};">${myQuestions[count].answers.a}</button>
+
  function buildQuiz(){
     // A place to store the HTML output
     const output = [];

@@ -11,7 +11,7 @@ $(document).ready(function(){
   //const submitButton = $("#submit");
   // submitButton.on("click",showResults);
   
-  count=0;
+  count=1;
   timer=12;
 
 const myQuestions = [
@@ -98,17 +98,21 @@ const myQuestions = [
 // }, 60000);
 //////////////
 function answer(){
-  
- // alert(count);
-//  console.log($(".myAnswers.0"))
-console.log("farts");
-
+console.log(this);
 }
+// var element = document.querySelector('.myAnswers.0');
+// element.addEventListener("click", function(e) {
+//     alert('something');
+// }, false);
+
  $("#start-correctOrWrong").on("click", function(){
   $("#time").text(timer);
+  // $(".myAnswers."+count).on("click", function(){
+  //   alert("farts");
+  // });
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers 0" onclick="${answer()};">${myQuestions[count].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers 0" onclick="${answer()}">${myQuestions[count].answers.a}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
@@ -119,7 +123,7 @@ console.log("farts");
     $("#time").text(timer);
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers ${count}" onclick="${answer()};">${myQuestions[count].answers.a}</button>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers ${count}" onclick="answer()">${myQuestions[count].answers.a}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
           <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
@@ -130,5 +134,6 @@ console.log("farts");
   
 }, 12000);
  });
+
 
 });
