@@ -9,9 +9,9 @@ $(document).ready(function(){
   const quizContainer=$("div#quiz");
   const resultsContainer = $("div#results");
   const submitButton = $("#submit");
-  submitButton.on("click",showResults);
+  // submitButton.on("click",showResults);
   
-  count=0;
+  count=1;
   timer=25;
 
 const myQuestions = [
@@ -71,11 +71,43 @@ const myQuestions = [
       correctAnswer: "d"
     }
   ];
+///////////////
+// var vi = setVariableInterval(function() {
+//   // this is the variableInterval - so we can change/get the interval here:
+//   var interval = this.interval;
 
+//   // print it for the hell of it
+//   console.log(interval);
+
+//   // we can stop ourselves.
+//   if (interval>4000) this.stop();
+
+//   // we could return a new interval after doing something
+//   return interval + 100;
+// }, 100);  
+
+// // we can change the interval down here too
+// setTimeout(function() {
+//   vi.interval = 3500;
+// }, 1000);
+
+// // or tell it to start back up in a minute
+// setTimeout(function() {
+//   vi.interval = 100;
+//   vi.start();
+// }, 60000);
+//////////////
 
  $("#start-correctOrWrong").on("click", function(){
-  // $("#start-correctOrWrong").on('click', intervalID);
-var intervalID = setInterval(function () {
+  $("#time").text(timer);
+        quizContainer.html(
+          `<p class="myQuestion">${myQuestions[0].question}</p>
+          <button type="button" style="background: url(./assets/images/a_Button.png)" class="myAnswers">${myQuestions[count].answers.a}</button>
+          <button type="button" class="myAnswers">${myQuestions[count].answers.b}</button>
+          <button type="button" class="myAnswers">${myQuestions[count].answers.c}</button>
+          <button type="button" class="myAnswers">${myQuestions[count].answers.d}</button>
+          <button type="button" class="myAnswers">${myQuestions[count].answers.e}</button>`);
+  var intervalID = setInterval(function () {
 
     --timer;
     $("#time").text(timer);
@@ -89,7 +121,8 @@ var intervalID = setInterval(function () {
    if (++count === myQuestions.length) {
        window.clearInterval(intervalID);
    }
-}, 7000);
+  
+}, 3000);
  });
 
 });
