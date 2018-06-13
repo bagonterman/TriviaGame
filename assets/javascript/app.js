@@ -169,6 +169,7 @@ function stopTheMadness(){
     <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
 }
  $("#start-correctOrWrong").on("click", function(){
+  --timer;
   $("#time").text(timer);
   // $(".myAnswers."+count).on("click", function(){
   //   alert("farts");
