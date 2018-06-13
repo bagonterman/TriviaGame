@@ -101,22 +101,34 @@ function answer(e){
 //console.log(this.attr('value'));
 //console.log(e);
 }
-
+countAnswerClick=0;
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
   console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
   console.log(e.target.value);//The value of each button.
   if(myQuestions[count-1].correctAnswer==e.target.value){
+    //countAnswerClick++;
+    changeTime=1;
+    resetTime=10000;
+    //count++;
+    //countAnswerClick=countAnswerClick%2==0;
+    //alert(countAnswerClick++);
       alert("You survived");
       //window.clearInterval(intervalID);
-      timer=10;
+      //timer=10;
       $("#time").text(timer);
+      stopTheMadness(changeTime);
+      loadButtons(resetTime);
   }
   else{
+    countAnswerClick++;
+    //count++;
       alert("I am sorry to inform you \n but you didn't make it.");
       //window.clearInterval(intervalID);
-      timer=10;
+      //timer=10;
       $("#time").text(timer);
+      stopTheMadness(changeTime);
+      loadButtons(resetTime);
   }
   // console.log(this.attr('value'));
 });
@@ -124,7 +136,38 @@ $(document).on("click", "#quiz", function(e){
 // element.addEventListener("click", function(e) {
 //     alert('something');
 // }, false);
+function loadButtons(){/////////makes buttons //////////
+ 
+ intervalID = setInterval(function () {
+  //alert(count)
 
+  --timer;
+  //alert(timer);
+  $("#time").text(timer);
+      quizContainer.html(
+        `<p class="myQuestion">${myQuestions[count].question}</p>
+        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
+        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
+        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
+        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
+        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
+ if (++count === myQuestions.length) {
+     window.clearInterval(intervalID);
+ }
+
+}, 10000);
+}
+function stopTheMadness(){
+  count++
+  window.clearInterval(intervalID);
+  quizContainer.html(
+    `<p class="myQuestion">${myQuestions[count].question}</p>
+    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
+    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
+    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
+    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
+    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
+}
  $("#start-correctOrWrong").on("click", function(){
   $("#time").text(timer);
   // $(".myAnswers."+count).on("click", function(){
@@ -137,22 +180,8 @@ $(document).on("click", "#quiz", function(e){
           <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.c}" class="myAnswers 0"">${myQuestions[0].answers.c}</button>
           <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.d}" class="myAnswers 0"">${myQuestions[0].answers.d}</button>
           <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.e}" class="myAnswers 0"">${myQuestions[0].answers.e}</button>`);
-  var intervalID = setInterval(function () {
-
-    --timer;
-    $("#time").text(timer);
-        quizContainer.html(
-          `<p class="myQuestion">${myQuestions[count].question}</p>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
-   if (++count === myQuestions.length) {
-       window.clearInterval(intervalID);
-   }
-  
-}, 10000);
+  // var intervalID = setInterval(function () {
+    loadButtons();
  });
 
 
