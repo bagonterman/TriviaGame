@@ -11,7 +11,7 @@ $(document).ready(function(){
   //const submitButton = $("#submit");
   // submitButton.on("click",showResults);
   
-  count=1;
+  count=0;
   timer=10;
 
 const myQuestions = [
@@ -104,12 +104,13 @@ function answer(e){
 countAnswerClick=0;
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
-  console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
-  console.log(e.target.value);//The value of each button.
-  if(myQuestions[count-1].correctAnswer==e.target.value){
+  //console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
+  //console.log(e.target.value);//The value of each button.
+  //if(myQuestions[count-1].correctAnswer==e.target.value){
+    if(myQuestions[count].correctAnswer==e.target.value){
     //countAnswerClick++;
-    changeTime=1;
-    resetTime=10000;
+    //changeTime=1;
+    //resetTime=10000;
     //count++;
     //countAnswerClick=countAnswerClick%2==0;
     //alert(countAnswerClick++);
@@ -117,8 +118,8 @@ $(document).on("click", "#quiz", function(e){
       //window.clearInterval(intervalID);
       //timer=10;
       $("#time").text(timer);
-      stopTheMadness(changeTime);
-      loadButtons(resetTime);
+      stopTheMadness();
+      loadButtons();
   }
   else{
     countAnswerClick++;
@@ -127,8 +128,8 @@ $(document).on("click", "#quiz", function(e){
       //window.clearInterval(intervalID);
       //timer=10;
       $("#time").text(timer);
-      stopTheMadness(changeTime);
-      loadButtons(resetTime);
+      stopTheMadness();
+      loadButtons();
   }
   // console.log(this.attr('value'));
 });
