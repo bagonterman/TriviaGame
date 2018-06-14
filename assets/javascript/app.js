@@ -13,6 +13,7 @@ $(document).ready(function(){
   
   count=0;
   timeCounter=10;
+  pause=4;
   //timer=10;
 
 const myQuestions = [
@@ -72,32 +73,33 @@ const myQuestions = [
       correctAnswer: "Thirty days"
     }
   ];
-///////////////
-// var vi = setVariableInterval(function() {
-//   // this is the variableInterval - so we can change/get the interval here:
-//   var interval = this.interval;
+  function startWaitTimers(t){
+    timeCounter = t;
+    alert(timCounter);
+    // if (availableQuestions.length > 1) {
+        // waitTimeout = setTimeout(answerQuestion(myAnswer,count),7000);
+        // $( "#status" ).text( "Next Question:" );
+    // } else {
+        // waitTimeout = setTimeout(showSummary,7000);
+        // $( "#status" ).text( "Summary:" );
+    // }
+    // $( ".time" ).addClass( "timeShort" );
+    //timerInterval = setInterval(updateTimerCounter,1000);
+}
+// function waitTimer(t){
+//   timeCounter = t;
+//   wait=setTimeout();
+// }
+function answerQuestion(myAnswer,count,myQuestions){
+ // alert("farts");
+  if(myAnswer){
 
-//   // print it for the hell of it
-//   console.log(interval);
+  }
+  else{
+quizContainer.html(`<p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p>`)
+  }
 
-//   // we can stop ourselves.
-//   if (interval>4000) this.stop();
-
-//   // we could return a new interval after doing something
-//   return interval + 100;
-// }, 100);  
-
-// // we can change the interval down here too
-// setTimeout(function() {
-//   vi.interval = 3500;
-// }, 1000);
-
-// // or tell it to start back up in a minute
-// setTimeout(function() {
-//   vi.interval = 100;
-//   vi.start();
-// }, 60000);
-//////////////
+}
 function updateTimerCounter() {
   
   $("#time").text(--timeCounter);
@@ -119,16 +121,22 @@ function startQuestionTimers(){
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
   try{
-    if(myQuestions[count].correctAnswer==e.target.value){
+    myAnswer=myQuestions[count].correctAnswer==e.target.value;
+    // if(myQuestions[count].correctAnswer==e.target.value){
+      if(myAnswer){
       alert("You survived");
       clearInterval(timerInterval);
       stopTheMadness();
+      
       loadButtons();
   }
   else{
       alert("I am sorry to inform you \n but you didn't make it.");
+      
       clearInterval(timerInterval);
       stopTheMadness();
+      // alert(myAnswer+"  "+count+"  "+myQuestions);
+      waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
       loadButtons();
       }
   }
@@ -165,6 +173,8 @@ function stopTheMadness(){
   count++
   window.clearInterval(intervalID);
   clearInterval(timerInterval);
+  
+  //startWaitTimers(6);
   try{
   quizContainer.html(
     `<p class="myQuestion">${myQuestions[count].question}</p>
