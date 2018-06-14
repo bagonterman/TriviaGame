@@ -132,7 +132,6 @@ $(document).on("click", "#quiz", function(e){
       loadButtons();
   }
   else{
-    countAnswerClick++;
     //count++;
       alert("I am sorry to inform you \n but you didn't make it.");
       //window.clearInterval(intervalID);
