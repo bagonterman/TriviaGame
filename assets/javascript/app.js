@@ -73,23 +73,7 @@ const myQuestions = [
       correctAnswer: "Thirty days"
     }
   ];
-  function startWaitTimers(t){
-    timeCounter = t;
-    alert(timCounter);
-    // if (availableQuestions.length > 1) {
-        // waitTimeout = setTimeout(answerQuestion(myAnswer,count),7000);
-        // $( "#status" ).text( "Next Question:" );
-    // } else {
-        // waitTimeout = setTimeout(showSummary,7000);
-        // $( "#status" ).text( "Summary:" );
-    // }
-    // $( ".time" ).addClass( "timeShort" );
-    //timerInterval = setInterval(updateTimerCounter,1000);
-}
-// function waitTimer(t){
-//   timeCounter = t;
-//   wait=setTimeout();
-// }
+
 function answerQuestion(myAnswer,count,myQuestions){
  // alert("farts");
   if(myAnswer){
@@ -97,8 +81,13 @@ function answerQuestion(myAnswer,count,myQuestions){
   }
   else{
 quizContainer.html(`<p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p>`)
+//updateTimerCounter();
   }
 
+}
+function wait(t){
+  timeCounter = t;
+  waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
 }
 function updateTimerCounter() {
   
@@ -136,7 +125,8 @@ $(document).on("click", "#quiz", function(e){
       clearInterval(timerInterval);
       stopTheMadness();
       // alert(myAnswer+"  "+count+"  "+myQuestions);
-      waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
+      //waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
+      wait(5);
       loadButtons();
       }
   }
