@@ -99,7 +99,11 @@ const myQuestions = [
 // }, 60000);
 //////////////
 function updateTimerCounter() {
+  
   $("#time").text(--timeCounter);
+  // if(count !== myQuestions.length){
+  //   $("#time").text(0);
+  // }
   if(timeCounter===0){
     stopTheMadness();
   }
@@ -114,32 +118,21 @@ function startQuestionTimers(){
 
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
-  //console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
-  //console.log(e.target.value);//The value of each button.
-  //if(myQuestions[count-1].correctAnswer==e.target.value){
+  try{
     if(myQuestions[count].correctAnswer==e.target.value){
-    //countAnswerClick++;
-    //changeTime=1;
-    //resetTime=10000;
-    //count++;
-    //countAnswerClick=countAnswerClick%2==0;
-    //alert(countAnswerClick++);
       alert("You survived");
-      //window.clearInterval(intervalID);
-      //timer=10;
-      
+      clearInterval(timerInterval);
       stopTheMadness();
       loadButtons();
   }
   else{
-    //count++;
       alert("I am sorry to inform you \n but you didn't make it.");
-      //window.clearInterval(intervalID);
-      //timer=10;
-      
+      clearInterval(timerInterval);
       stopTheMadness();
       loadButtons();
+      }
   }
+  catch(err){}
   // console.log(this.attr('value'));
 });
 // var element = document.querySelector('.myAnswers.0');
@@ -157,10 +150,10 @@ function loadButtons(){/////////makes buttons //////////
       quizContainer.html(
         `<p class="myQuestion">${myQuestions[count].question}</p>
         <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
-        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
-        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
-        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
-        <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
+        <button type="button" style="background: url(./assets/images/b_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
+        <button type="button" style="background: url(./assets/images/c_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
+        <button type="button" style="background: url(./assets/images/d_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
+        <button type="button" style="background: url(./assets/images/e_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
  if (++count === myQuestions.length) {
      window.clearInterval(intervalID);
  }
@@ -172,27 +165,28 @@ function stopTheMadness(){
   count++
   window.clearInterval(intervalID);
   clearInterval(timerInterval);
+  try{
   quizContainer.html(
     `<p class="myQuestion">${myQuestions[count].question}</p>
     <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
-    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
-    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
-    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
-    <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
-}
+    <button type="button" style="background: url(./assets/images/b_Button.png)" value="${myQuestions[count].answers.b}" class="myAnswers ${count}">${myQuestions[count].answers.b}</button>
+    <button type="button" style="background: url(./assets/images/c_Button.png)" value="${myQuestions[count].answers.c}" class="myAnswers ${count}">${myQuestions[count].answers.c}</button>
+    <button type="button" style="background: url(./assets/images/d_Button.png)" value="${myQuestions[count].answers.d}" class="myAnswers ${count}">${myQuestions[count].answers.d}</button>
+    <button type="button" style="background: url(./assets/images/e_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
+  }
+  catch(err){}
+
+  }
  $("#start-correctOrWrong").on("click", function(){
-  //--timer;
-  //$("#time").text(timer);
-  // $(".myAnswers."+count).on("click", function(){
-  //   alert("farts");
-  // });
+  // $("#start-correctOrWrong").hide();
+  // $("#start-correctOrWrong").appendTo(".wrapper.characters")
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[0].question}</p>
           <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.a}" class="myAnswers 0">${myQuestions[0].answers.a}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.b}" class="myAnswers 0">${myQuestions[0].answers.b}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.c}" class="myAnswers 0"">${myQuestions[0].answers.c}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.d}" class="myAnswers 0"">${myQuestions[0].answers.d}</button>
-          <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[0].answers.e}" class="myAnswers 0"">${myQuestions[0].answers.e}</button>`);
+          <button type="button" style="background: url(./assets/images/b_Button.png)" value="${myQuestions[0].answers.b}" class="myAnswers 0">${myQuestions[0].answers.b}</button>
+          <button type="button" style="background: url(./assets/images/c_Button.png)" value="${myQuestions[0].answers.c}" class="myAnswers 0"">${myQuestions[0].answers.c}</button>
+          <button type="button" style="background: url(./assets/images/d_Button.png)" value="${myQuestions[0].answers.d}" class="myAnswers 0"">${myQuestions[0].answers.d}</button>
+          <button type="button" style="background: url(./assets/images/e_Button.png)" value="${myQuestions[0].answers.e}" class="myAnswers 0"">${myQuestions[0].answers.e}</button>`);
   // var intervalID = setInterval(function () {
     loadButtons();
  });
