@@ -12,7 +12,8 @@ $(document).ready(function(){
   // submitButton.on("click",showResults);
   
   count=0;
-  timer=10;
+  timeCounter=10;
+  //timer=10;
 
 const myQuestions = [
     {
@@ -97,11 +98,17 @@ const myQuestions = [
 //   vi.start();
 // }, 60000);
 //////////////
-function answer(e){
-//console.log(this.attr('value'));
-//console.log(e);
+function updateTimerCounter() {
+  $("#time").text(--timeCounter);
+
 }
-countAnswerClick=0;
+function startQuestionTimers(){
+  timeCounter = 10;
+  //$( "#status" ).text( "Time Remaining:" );
+  
+  timerInterval = setInterval(updateTimerCounter,1000);
+}
+
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
   //console.log(myQuestions[count-1].correctAnswer);///Correct Answer.
@@ -117,7 +124,7 @@ $(document).on("click", "#quiz", function(e){
       alert("You survived");
       //window.clearInterval(intervalID);
       //timer=10;
-      $("#time").text(timer);
+      
       stopTheMadness();
       loadButtons();
   }
@@ -127,7 +134,7 @@ $(document).on("click", "#quiz", function(e){
       alert("I am sorry to inform you \n but you didn't make it.");
       //window.clearInterval(intervalID);
       //timer=10;
-      $("#time").text(timer);
+      
       stopTheMadness();
       loadButtons();
   }
@@ -138,13 +145,13 @@ $(document).on("click", "#quiz", function(e){
 //     alert('something');
 // }, false);
 function loadButtons(){/////////makes buttons //////////
- 
+  startQuestionTimers();
  intervalID = setInterval(function () {
   //alert(count)
 
-  --timer;
+  //--timer;
   //alert(timer);
-  $("#time").text(timer);
+  //$("#time").text(timer);
       quizContainer.html(
         `<p class="myQuestion">${myQuestions[count].question}</p>
         <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
@@ -161,6 +168,7 @@ function loadButtons(){/////////makes buttons //////////
 function stopTheMadness(){
   count++
   window.clearInterval(intervalID);
+  clearInterval(timerInterval);
   quizContainer.html(
     `<p class="myQuestion">${myQuestions[count].question}</p>
     <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
@@ -170,8 +178,8 @@ function stopTheMadness(){
     <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.e}" class="myAnswers ${count}">${myQuestions[count].answers.e}</button>`);
 }
  $("#start-correctOrWrong").on("click", function(){
-  --timer;
-  $("#time").text(timer);
+  //--timer;
+  //$("#time").text(timer);
   // $(".myAnswers."+count).on("click", function(){
   //   alert("farts");
   // });
