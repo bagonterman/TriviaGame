@@ -100,6 +100,9 @@ const myQuestions = [
 //////////////
 function updateTimerCounter() {
   $("#time").text(--timeCounter);
+  if(timeCounter===0){
+    stopTheMadness();
+  }
 
 }
 function startQuestionTimers(){
@@ -166,6 +169,7 @@ function loadButtons(){/////////makes buttons //////////
 }, 10000);
 }
 function stopTheMadness(){
+  startQuestionTimers();
   count++
   window.clearInterval(intervalID);
   clearInterval(timerInterval);
