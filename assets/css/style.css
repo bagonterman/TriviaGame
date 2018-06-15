@@ -24,8 +24,16 @@ h1{
     color:white;
 
 }
+.Answers{
+    float:right;
+    margin-top:-40%;
+    margin-right:60px;
+    font-family: 'Love Ya Like A Sister', cursive;
+    line-height: 80%;
+}
 #timeRemaining{
-    font-family: 'Love Ya Like A Sister', cursive; 
+    font-family: 'Love Ya Like A Sister', cursive;
+    margin-left:30px; 
 }
 
 #start-correctOrWrong {

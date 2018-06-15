@@ -15,6 +15,9 @@ $(document).ready(function(){
   count=0;
   timeCounter=10;
   pause=4;
+  correctAnswers=0;
+  incorrectAnswers=0;
+  $("#timeRemaining").hide();
   //timer=10;
 
 const myQuestions = [
@@ -92,26 +95,14 @@ quizContainer.html(`<p class="correctAnswer">The correct answer is ${myQuestions
 //return clearTimeout(waitTimeout);
 }
 function wait(){
-  //timeCounter = t;
-  timeCounter = 5;
-  //stopTheMadness();
-  //window.clearInterval(intervalID);
-  //clearInterval(timerInterval);
-  //timeCounter=0;
-  
-  console.log(count);
-  // if(count==1||count==3||count==5){
-  //   count=count-1;
-  //   window.clearInterval(intervalID);
-  //   loadButtons();
-  
-  // }
-    clearInterval(timerInterval);
+    //timeCounter = 5;
+    console.log(count);
+    alert("farts")
+    //clearInterval(timerInterval);
     //stopTheMadness();
-   //loadButtons();
-  //}
-  waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),5000);
-  timerInterval = setInterval(updateTimerCounter,1000);
+    //window.clearInterval(intervalID);
+ waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),5000);
+  //timerInterval = setInterval(updateTimerCounter,1000);
 }
 
 function stopWait(){
@@ -142,21 +133,29 @@ $(document).on("click", "#quiz", function(e){
     myAnswer=myQuestions[count].correctAnswer==e.target.value;
     // if(myQuestions[count].correctAnswer==e.target.value){
       if(myAnswer){
-      alert("You survived");
+      correctAnswers++;
+      $("#correctAns").text(correctAnswers);
+      alert("You survived \nThe correct answer was: \n"+myQuestions[count].correctAnswer);
       clearInterval(timerInterval);
       stopTheMadness();
       
       loadButtons();
   }
   else{
-      alert("I am sorry to inform you \n but you didn't make it.");
+    
+      incorrectAnswers++;
+      $("#incorrectAns").text(incorrectAnswers);
+      alert("I am sorry to inform you \n but you didn't make it.\n"+"The correct answer was: \n"+myQuestions[count].correctAnswer);
       
       clearInterval(timerInterval);
+      //wait();
       stopTheMadness();
+     
       // alert(myAnswer+"  "+count+"  "+myQuestions);
       //waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
       loadButtons();
-      wait();
+     // wait();
+       wait();
       //clearTimeout(waitTimeout);
      // stopWait();
       }
@@ -189,17 +188,17 @@ function loadButtons(){/////////makes buttons //////////
         if (++count === myQuestions.length) {
             window.clearInterval(intervalID);
             clearTimeout(waitTimeout);
+            clearInterval(timerInterval);
             
         }
-        console.log("hey");
 
   }, 10000);
-  console.log('set intervalID', intervalID)
+  //console.log('set intervalID', intervalID)
 }
 function stopTheMadness(){
   startQuestionTimers();
   count++
-  console.log('clear intervalID', intervalID)
+  //console.log('clear intervalID', intervalID)
   window.clearInterval(intervalID);
   clearInterval(timerInterval);
   
@@ -217,7 +216,7 @@ function stopTheMadness(){
 
   }
  $("#start-correctOrWrong").on("click", function(){
-  // $("#start-correctOrWrong").hide();
+    $("#timeRemaining").show();
   // $("#start-correctOrWrong").appendTo(".wrapper.characters")
         quizContainer.html(
           `<p class="myQuestion">${myQuestions[0].question}</p>
