@@ -80,29 +80,17 @@ const myQuestions = [
 
 function answerQuestion(myAnswer,count,myQuestions){
   --timeCounter;
-  //count=count+1;
-  if(myAnswer){
 
-  }
-  else{
-quizContainer.html(`<p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p>`);
-//  clearInterval(timerInterval);
-//  stopTheMadness();
-// loadButtons();
+quizContainer.append(`<div><p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p><div>`);
 
-//updateTimerCounter();
-  }
-//return clearTimeout(waitTimeout);
 }
 function wait(){
-    //timeCounter = 5;
+    timeCounter = 5;
+
     console.log(count);
-    alert("farts")
-    //clearInterval(timerInterval);
-    //stopTheMadness();
-    //window.clearInterval(intervalID);
+
  waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),5000);
-  //timerInterval = setInterval(updateTimerCounter,1000);
+ timerInterval = setInterval(updateTimerCounter,1000);
 }
 
 function stopWait(){
@@ -117,6 +105,7 @@ function updateTimerCounter() {
   if(timeCounter===0){
     stopTheMadness();
     //stopWait();
+    //wait()
   }
 
 }
@@ -129,6 +118,7 @@ function startQuestionTimers(){
 
 $(document).on("click", "#quiz", function(e){
   e.preventDefault();
+  //clearTimeout(waitTimeout);
   try{
     myAnswer=myQuestions[count].correctAnswer==e.target.value;
     // if(myQuestions[count].correctAnswer==e.target.value){
@@ -138,44 +128,31 @@ $(document).on("click", "#quiz", function(e){
       alert("You survived \nThe correct answer was: \n"+myQuestions[count].correctAnswer);
       clearInterval(timerInterval);
       stopTheMadness();
-      
       loadButtons();
   }
   else{
-    
+    //clearTimeout(waitTimeout);
       incorrectAnswers++;
       $("#incorrectAns").text(incorrectAnswers);
       alert("I am sorry to inform you \n but you didn't make it.\n"+"The correct answer was: \n"+myQuestions[count].correctAnswer);
       
       clearInterval(timerInterval);
       //wait();
-      stopTheMadness();
-     
-      // alert(myAnswer+"  "+count+"  "+myQuestions);
-      //waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),7000);
+      stopTheMadness(myAnswer);
+     //wait();
       loadButtons();
-     // wait();
-       wait();
-      //clearTimeout(waitTimeout);
-     // stopWait();
+      clearInterval(intervalID);
+      //wait(); One of the bigger problems I have is this!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      
       }
   }
   catch(err){}
-  // console.log(this.attr('value'));
 });
-// var element = document.querySelector('.myAnswers.0');
-// element.addEventListener("click", function(e) {
-//     alert('something');
-// }, false);
+
 function loadButtons(){/////////makes buttons //////////
   startQuestionTimers();
+  //wait();
   intervalID = setInterval(function () {
-  //alert(count)
-  //--timer;
-  //alert(timer);
-  //$("#time").text(timer);
-      
-      // console.log("hey");
       quizContainer.html(
         `<p class="myQuestion">${myQuestions[count].question}</p>
         <button type="button" style="background: url(./assets/images/a_Button.png)" value="${myQuestions[count].answers.a}" class="myAnswers ${count}">${myQuestions[count].answers.a}</button>
@@ -197,11 +174,12 @@ function loadButtons(){/////////makes buttons //////////
 }
 function stopTheMadness(){
   startQuestionTimers();
-  count++
+
+   count++
   //console.log('clear intervalID', intervalID)
   window.clearInterval(intervalID);
   clearInterval(timerInterval);
-  
+  //if(count>1){count=count-1}
   //startWaitTimers(6);
   try{
   quizContainer.html(
@@ -226,6 +204,7 @@ function stopTheMadness(){
           <button type="button" style="background: url(./assets/images/d_Button.png)" value="${myQuestions[0].answers.d}" class="myAnswers 0"">${myQuestions[0].answers.d}</button>
           <button type="button" style="background: url(./assets/images/e_Button.png)" value="${myQuestions[0].answers.e}" class="myAnswers 0"">${myQuestions[0].answers.e}</button>`);
   // var intervalID = setInterval(function () {
+   
     loadButtons();
  });
 
