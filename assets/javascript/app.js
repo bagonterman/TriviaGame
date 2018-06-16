@@ -139,10 +139,10 @@ $(document).on("click", "#quiz", function(e){
       clearInterval(timerInterval);
       //wait();
       stopTheMadness(myAnswer);
-     //wait();
+      wait();
       loadButtons();
       clearInterval(intervalID);
-      //wait(); One of the bigger problems I have is this!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //wait(); //One of the bigger problems I have is this!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       
       }
   }
