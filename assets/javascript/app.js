@@ -1,24 +1,14 @@
 
 
-//const quizContainer = document.getElementById('quiz');
-//const quizContainer=$("div#quiz");
-//const resultsContainer = $("div#results");
-//const submitButton = $("#submit");
+
 $(document).ready(function(){
- //quizB = $("#quiz").append("<p>this sucks</p>");
   const quizContainer=$("div#quiz");
-  const startButton=$("#start-correctOrWrong");
- // const resultsContainer = $("div#results");
-  //const submitButton = $("#submit");
-  // submitButton.on("click",showResults);
-  
   count=0;
   timeCounter=10;
   pause=4;
   correctAnswers=0;
   incorrectAnswers=0;
   $("#timeRemaining").hide();
-  //timer=10;
 
 const myQuestions = [
     {
@@ -78,41 +68,30 @@ const myQuestions = [
     }
   ];
 
-function answerQuestion(myAnswer,count,myQuestions){
-  --timeCounter;
-
-quizContainer.append(`<div><p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p><div>`);
-
+function answerQuestion(){
+  quizContainer.append(`<div><p class="correctAnswer">The correct answer is ${myQuestions[count-1].correctAnswer}</p><div>`);
+  setTimeout(function () { console.log('we be ewaiting') }, 5000);
 }
 function wait(){
     timeCounter = 5;
+    count++
+    console.log(timeCounter);
+    answerQuestion();
 
-    console.log(count);
-
- waitTimeout = setTimeout(answerQuestion(myAnswer,count,myQuestions),5000);
- timerInterval = setInterval(updateTimerCounter,1000);
+  timerInterval = setInterval(updateTimerCounter,1000);
 }
 
-function stopWait(){
-  clearTimeout(waitTimeout);
-}
 function updateTimerCounter() {
   
   $("#time").text(--timeCounter);
-  // if(count !== myQuestions.length){
-  //   $("#time").text(0);
-  // }
+  // if(count 
   if(timeCounter===0){
     stopTheMadness();
-    //stopWait();
-    //wait()
   }
 
 }
 function startQuestionTimers(){
   timeCounter = 10;
-  //$( "#status" ).text( "Time Remaining:" );
-  
   timerInterval = setInterval(updateTimerCounter,1000);
 }
 
@@ -125,7 +104,6 @@ $(document).on("click", "#quiz", function(e){
       if(myAnswer){
       correctAnswers++;
       $("#correctAns").text(correctAnswers);
-      alert("You survived \nThe correct answer was: \n"+myQuestions[count].correctAnswer);
       clearInterval(timerInterval);
       stopTheMadness();
       loadButtons();
@@ -134,15 +112,10 @@ $(document).on("click", "#quiz", function(e){
     //clearTimeout(waitTimeout);
       incorrectAnswers++;
       $("#incorrectAns").text(incorrectAnswers);
-      alert("I am sorry to inform you \n but you didn't make it.\n"+"The correct answer was: \n"+myQuestions[count].correctAnswer);
       
       clearInterval(timerInterval);
-      //wait();
-      stopTheMadness(myAnswer);
       wait();
-      loadButtons();
       clearInterval(intervalID);
-      //wait(); //One of the bigger problems I have is this!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       
       }
   }
